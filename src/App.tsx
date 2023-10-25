@@ -16,14 +16,9 @@ const markerIds = [
   {
     coordinate: {
       lat: 1.35,
-      lng: 103.8198
-    }
-  },
-  {
-    coordinate: {
-      lat: 1.7,
-      lng: 103.8198
-    }
+      lng: 103.8198,
+    },
+    title: 'test'
   }
 ]
 
