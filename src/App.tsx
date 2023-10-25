@@ -1,6 +1,27 @@
 import { GoogleMap } from '@capacitor/google-maps';
 import { useRef } from 'react';
 
+const markerIds = [
+  {
+    coordinate: {
+      lat: 2,
+      lng: 103.8198
+    }
+  }, 
+  {
+    coordinate: {
+      lat: 1.35,
+      lng: 103.8198
+    }
+  },
+  {
+    coordinate: {
+      lat: 1.7,
+      lng: 103.8198
+    }
+  }
+]
+
 const MyMap: React.FC = () => {
   const mapRef = useRef<HTMLElement>();
   let newMap: GoogleMap;
@@ -20,6 +41,15 @@ const MyMap: React.FC = () => {
         zoom: 8
       }
     })
+
+    for(let i=0; i<markerIds.length; i++){
+      await newMap.addMarker(markerIds[i]);
+    }
+
+    await newMap.setOnMarkerClickListener((event) => {
+      console.log(event)
+    });
+
   }
 
   return (
