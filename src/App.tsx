@@ -1,5 +1,10 @@
 import { GoogleMap } from '@capacitor/google-maps';
 import { useRef } from 'react';
+import Example from './Example';
+import { setupIonicReact } from '@ionic/react';
+import '@ionic/react/css/core.css';
+
+setupIonicReact();
 
 const markerIds = [
   {
@@ -54,6 +59,7 @@ const MyMap: React.FC = () => {
 
   return (
     <div className="component-wrapper">
+      <Example />
       <capacitor-google-map ref={mapRef} style={{
         display: 'inline-block',
         width: 275,
