@@ -1,4 +1,9 @@
-import { IonItem, IonList, IonSelect, IonSelectOption } from '@ionic/react';
+import { IonItem, 
+    IonList, IonSelect, IonSelectOption, 
+    IonDatetime, 
+    IonDatetimeButton, 
+    IonModal 
+} from '@ionic/react';
 
 function Example() {
   return (
@@ -33,6 +38,14 @@ function Example() {
           <IonSelectOption value="banana">Banana</IonSelectOption>
           <IonSelectOption value="orange">Orange</IonSelectOption>
         </IonSelect>
+      </IonItem>
+
+      <IonItem>
+        <IonDatetimeButton datetime="datetime"></IonDatetimeButton>
+
+        <IonModal keepContentsMounted={true}>
+            <IonDatetime id="datetime"></IonDatetime>
+        </IonModal>
       </IonItem>
     </IonList>
   );

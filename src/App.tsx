@@ -22,7 +22,7 @@ const markerIds = [
   }
 ]
 
-const MyMap: React.FC = () => {
+const App: React.FC = () => {
   const mapRef = useRef<HTMLElement>();
   let newMap: GoogleMap;
 
@@ -63,17 +63,20 @@ const MyMap: React.FC = () => {
   }
 
   return (
-    <div className="component-wrapper">
+    <div className="component-wrapper"
+    >      
+    <button onClick={createMap}>Create Map</button>
       <Example />
       <capacitor-google-map ref={mapRef} style={{
         display: 'inline-block',
-        width: 275,
-        height: 400
-      }}></capacitor-google-map>
+        width: 1000,
+        height: 1000
+      }}>
 
-      <button onClick={createMap}>Create Map</button>
+      </capacitor-google-map>
+
     </div>
   )
 }
 
-export default MyMap;
+export default App;

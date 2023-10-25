@@ -9,7 +9,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <div style={{
+      overflow: 'scroll'
+    }}>
     <App />
+    </div>
   </React.StrictMode>
 );
 
