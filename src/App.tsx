@@ -19,6 +19,13 @@ const markerIds = [
       lng: 103.8198,
     },
     title: 'test'
+  },
+  {
+    coordinate: {
+      lat: 1.7,
+      lng: 105,
+    },
+    title: 'test'
   }
 ]
 
@@ -42,17 +49,20 @@ const App: React.FC = () => {
       }
     })
 
+    let path = [];
+
     for(let i=0; i<markerIds.length; i++){
       await newMap.addMarker(markerIds[i]);
+      path.push({
+        lat: markerIds[i].coordinate.lat,
+        lng: markerIds[i].coordinate.lng
+      })
     }
   
     await newMap.addPolylines([
       {
         strokeColor: 'Black',
-        path: [
-          { lat: 1.35, lng: 103.8 },
-          { lat: 2, lng: 103.9 },
-        ]
+        path: path
       }
     ])
 

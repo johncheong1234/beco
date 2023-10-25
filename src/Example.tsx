@@ -41,6 +41,15 @@ function Example() {
       </IonItem>
 
       <IonItem>
+        Start Date
+        <IonDatetimeButton datetime="datetime"></IonDatetimeButton>
+
+        <IonModal keepContentsMounted={true}>
+            <IonDatetime id="datetime"></IonDatetime>
+        </IonModal>
+      </IonItem>
+      <IonItem>
+        End Date
         <IonDatetimeButton datetime="datetime"></IonDatetimeButton>
 
         <IonModal keepContentsMounted={true}>
