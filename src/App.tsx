@@ -45,6 +45,16 @@ const MyMap: React.FC = () => {
     for(let i=0; i<markerIds.length; i++){
       await newMap.addMarker(markerIds[i]);
     }
+  
+    await newMap.addPolylines([
+      {
+        strokeColor: 'Black',
+        path: [
+          { lat: 1.35, lng: 103.8 },
+          { lat: 2, lng: 103.9 },
+        ]
+      }
+    ])
 
     await newMap.setOnMarkerClickListener((event) => {
       console.log(event)
