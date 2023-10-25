@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { GoogleMap } from '@capacitor/google-maps';
+import { useRef } from 'react';
 
-function App() {
+const MyMap: React.FC = () => {
+  const mapRef = useRef<HTMLElement>();
+  let newMap: GoogleMap;
+
+  async function createMap() {
+    if (!mapRef.current) return;
+
+    newMap = await GoogleMap.create({
+      id: 'my-cool-map',
+      element: mapRef.current,
+      apiKey: 'AIzaSyDsJwyFN68zDj4ksES-6sx25nwmdw08VBM',
+      config: {
+        center: {
+          lat: 1.3521,
+          lng: 103.8198
+        },
+        zoom: 8
+      }
+    })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="component-wrapper">
+      <capacitor-google-map ref={mapRef} style={{
+        display: 'inline-block',
+        width: 275,
+        height: 400
+      }}></capacitor-google-map>
+
+      <button onClick={createMap}>Create Map</button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default MyMap;
