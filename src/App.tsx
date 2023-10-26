@@ -88,10 +88,20 @@ const App: React.FC = () => {
               })
             }
 
+            const lineSymbol = {
+              path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+            };
+
             await newMap.addPolylines([
               {
                 strokeColor: 'Black',
-                path: path
+                path: path,
+                icons: [
+                  {
+                    icon: lineSymbol,
+                    offset: "100%",
+                  },
+                ]
               }
             ])
           }
