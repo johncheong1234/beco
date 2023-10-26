@@ -8,7 +8,9 @@ import {
   setInspectionTypeReducer,
   setEstateReducer,
   setBlockReducer,
-  setInspectorReducer
+  setInspectorReducer,
+  setStartDateReducer,
+  setEndDateReducer
 } from './exampleSlice'; 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,6 +21,8 @@ function Example() {
   const estate: string = useSelector((state:any) => state.example.estate);
   const block: string = useSelector((state:any) => state.example.block);
   const inspector: string = useSelector((state:any) => state.example.inspector);
+  const startDate: string = useSelector((state:any) => state.example.startDate);
+  const endDate: string = useSelector((state:any) => state.example.endDate);
 
   function setInspectionType(event: any){
     console.log(event.detail.value)
@@ -45,7 +49,20 @@ function Example() {
     }))
   }
 
+  function setStartDate(event: any){
+    dispatch(setStartDateReducer({
+      startDate: event.detail.value
+    }))
+  }
+
+  function setEndDate(event: any){
+    dispatch(setEndDateReducer({
+      endDate: event.detail.value
+    }))
+  }
+
   return (
+    console.log('start and end date is ', startDate, endDate),
     <IonList>
       <IonItem>
         <IonSelect label="Inspection  Type" value={inspectionType} onIonChange={setInspectionType}>
@@ -78,23 +95,18 @@ function Example() {
           <IonSelectOption value="bob">Bob</IonSelectOption>
         </IonSelect>
       </IonItem>
-
       <IonItem>
-        Start Date
-        <IonDatetimeButton datetime="datetime"></IonDatetimeButton>
-
-        <IonModal keepContentsMounted={true}>
-            <IonDatetime id="datetime"></IonDatetime>
-        </IonModal>
+        Start Date <IonDatetime value={startDate} onIonChange={setStartDate}></IonDatetime>
+        End Date <IonDatetime value={endDate} onIonChange={setEndDate}></IonDatetime>
       </IonItem>
-      <IonItem>
+      {/* <IonItem>
         End Date
         <IonDatetimeButton datetime="datetime"></IonDatetimeButton>
 
         <IonModal keepContentsMounted={true}>
             <IonDatetime id="datetime"></IonDatetime>
         </IonModal>
-      </IonItem>
+      </IonItem> */}
     </IonList>
   );
 }
