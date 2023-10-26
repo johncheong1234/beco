@@ -124,8 +124,8 @@ const App: React.FC = () => {
       <Example />
       <capacitor-google-map ref={mapRef} style={{
         display: 'inline-block',
-        width: 1000,
-        height: 1000
+        width: '100%',
+        height: '200px'
       }}>
 
       </capacitor-google-map>
