@@ -20,7 +20,7 @@ export const exampleSlice = createSlice({
             state.block = action.payload.block
         },
         setInspectorReducer: (state,action) => {
-            state.inspector = action.payload.Inspector
+            state.inspector = action.payload.inspector
         }
     }
 });

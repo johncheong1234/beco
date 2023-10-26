@@ -33,7 +33,17 @@ function Example() {
     }))
   }
 
-  
+  function setBlock(event: any){
+    dispatch(setBlockReducer({
+      block: event.detail.value
+    }))
+  }
+
+  function setInspector(event: any){
+    dispatch(setInspectorReducer({
+      inspector: event.detail.value
+    }))
+  }
 
   return (
     <IonList>
@@ -54,18 +64,18 @@ function Example() {
       </IonItem>
 
       <IonItem>
-        <IonSelect label="Stacked label" labelPlacement="stacked">
-          <IonSelectOption value="apple">Apple</IonSelectOption>
-          <IonSelectOption value="banana">Banana</IonSelectOption>
-          <IonSelectOption value="orange">Orange</IonSelectOption>
+        <IonSelect label="Block" labelPlacement="stacked" value={block} onIonChange={setBlock}>
+          <IonSelectOption value="1">1</IonSelectOption>
+          <IonSelectOption value="2">2</IonSelectOption>
+          <IonSelectOption value="3">3</IonSelectOption>
         </IonSelect>
       </IonItem>
 
       <IonItem>
-        <IonSelect label="Floating label" labelPlacement="floating">
-          <IonSelectOption value="apple">Apple</IonSelectOption>
-          <IonSelectOption value="banana">Banana</IonSelectOption>
-          <IonSelectOption value="orange">Orange</IonSelectOption>
+        <IonSelect label="Inspector" labelPlacement="floating" value={inspector} onIonChange={setInspector}>
+          <IonSelectOption value="tom">Tom</IonSelectOption>
+          <IonSelectOption value="harry">Harry</IonSelectOption>
+          <IonSelectOption value="bob">Bob</IonSelectOption>
         </IonSelect>
       </IonItem>
 
