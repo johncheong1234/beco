@@ -4,6 +4,7 @@ import Example from './Example';
 import { setupIonicReact } from '@ionic/react';
 import '@ionic/react/css/core.css';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 setupIonicReact();
 
@@ -49,21 +50,31 @@ const App: React.FC = () => {
     startDate,
     endDate
     )
-    
-    if (!mapRef.current) return;
 
-    newMap = await GoogleMap.create({
-      id: 'my-cool-map',
-      element: mapRef.current,
-      apiKey: 'AIzaSyDsJwyFN68zDj4ksES-6sx25nwmdw08VBM',
-      config: {
-        center: {
-          lat: 1.3521,
-          lng: 103.8198
-        },
-        zoom: 8
-      }
-    })
+    axios.post('http://localhost:3001/records', {
+      "inspector": "bob",
+      "block": "1",
+      "estate": "woodlands",
+      "inspectionType": "FIR",
+      "startDate":"2023-10-01T18:00:00.000Z",
+      "endDate": "2023-10-10T18:00:00.000Z"
+  })
+    .then(async function (response: any) {
+      console.log(response);
+      if (!mapRef.current) return;
+
+        newMap = await GoogleMap.create({
+          id: 'my-cool-map',
+          element: mapRef.current,
+          apiKey: 'AIzaSyDsJwyFN68zDj4ksES-6sx25nwmdw08VBM',
+          config: {
+            center: {
+              lat: 1.3521,
+              lng: 103.8198
+            },
+            zoom: 8
+          }
+        })
 
     let path = [];
 
@@ -85,6 +96,12 @@ const App: React.FC = () => {
     await newMap.setOnMarkerClickListener((event) => {
       console.log(event)
     });
+    })
+    .catch(function (error: any) {
+      console.log(error);
+    });
+
+    
 
   }
 
