@@ -10,7 +10,7 @@ import {
   setBlockReducer,
   setInspectorReducer,
   setStartDateReducer,
-  setEndDateReducer
+  setEndDateReducer,
 } from './exampleSlice'; 
 import { useDispatch, useSelector } from 'react-redux';
 

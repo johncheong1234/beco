@@ -8,7 +8,8 @@ export const exampleSlice = createSlice({
         block: '1',
         inspector: 'bob',
         startDate: '2023-10-01T02:00:00Z',
-        endDate: '2023-10-20T02:00:00Z'
+        endDate: '2023-10-20T02:00:00Z',
+        recordInfo: "",
     },
     reducers: {
         setInspectionTypeReducer: (state, action) => {
@@ -28,7 +29,10 @@ export const exampleSlice = createSlice({
         },
         setEndDateReducer: (state, action) => {
             state.endDate = action.payload.endDate
-        } 
+        },
+        setRecordInfo: (state, action) => {
+            state.recordInfo = action.payload.recordInfo
+        }
     }
 });
 
@@ -38,6 +42,7 @@ export const {
     setBlockReducer,
     setInspectorReducer,
     setStartDateReducer,
-    setEndDateReducer
+    setEndDateReducer,
+    setRecordInfo
 } = exampleSlice.actions;
 export default exampleSlice.reducer;

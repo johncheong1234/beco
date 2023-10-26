@@ -3,12 +3,14 @@ import { useRef } from 'react';
 import Example from './Example';
 import { setupIonicReact } from '@ionic/react';
 import '@ionic/react/css/core.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import { setRecordInfo } from './exampleSlice';
 
 setupIonicReact();
 
 const App: React.FC = () => {
+  const dispatch = useDispatch();
   const mapRef = useRef<HTMLElement>();
   let newMap: GoogleMap;
   const inspectionType: string = useSelector((state:any) => state.example.inspectionType);
@@ -17,6 +19,7 @@ const App: React.FC = () => {
   const inspector: string = useSelector((state:any) => state.example.inspector);
   const startDate: string = useSelector((state:any) => state.example.startDate);
   const endDate: string = useSelector((state:any) => state.example.endDate);
+  const recordInfo: string = useSelector((state:any) => state.example.recordInfo);
 
   async function createMap() {
     console.log('info needed is ',
@@ -101,6 +104,9 @@ const App: React.FC = () => {
 
     await newMap.setOnMarkerClickListener((event) => {
       console.log(event)
+      dispatch(setRecordInfo({
+        recordInfo: event.title
+      }))
     });
     })
     .catch(function (error: any) {
@@ -123,7 +129,13 @@ const App: React.FC = () => {
       }}>
 
       </capacitor-google-map>
-
+      <div style= {{
+        marginTop: '20px',
+        marginBottom: '20px',
+        marginLeft: '20px'
+      }}>
+        {recordInfo}
+      </div>
     </div>
   )
 }
