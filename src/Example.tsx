@@ -4,23 +4,52 @@ import { IonItem,
     IonDatetimeButton, 
     IonModal 
 } from '@ionic/react';
+import {
+  setInspectionTypeReducer,
+  setEstateReducer,
+  setBlockReducer,
+  setInspectorReducer
+} from './exampleSlice'; 
+import { useDispatch, useSelector } from 'react-redux';
 
 function Example() {
+
+  const dispatch = useDispatch();
+  const inspectionType: string = useSelector((state:any) => state.example.inspectionType);
+  const estate: string = useSelector((state:any) => state.example.estate);
+  const block: string = useSelector((state:any) => state.example.block);
+  const inspector: string = useSelector((state:any) => state.example.inspector);
+
+  function setInspectionType(event: any){
+    console.log(event.detail.value)
+    dispatch(setInspectionTypeReducer({
+        inspectionType: event.detail.value
+    }))
+  }
+
+  function setEstate(event: any){
+    dispatch(setEstateReducer({
+      estate: event.detail.value
+    }))
+  }
+
+  
+
   return (
     <IonList>
       <IonItem>
-        <IonSelect label="Default label" placeholder="Favorite Fruit">
-          <IonSelectOption value="apple">Apple</IonSelectOption>
-          <IonSelectOption value="banana">Banana</IonSelectOption>
-          <IonSelectOption value="orange">Orange</IonSelectOption>
+        <IonSelect label="Inspection  Type" value={inspectionType} onIonChange={setInspectionType}>
+          <IonSelectOption value="FIR">FIR</IonSelectOption>
+          <IonSelectOption value="RI">RI</IonSelectOption>
+          <IonSelectOption value="FQI">FQI</IonSelectOption>
         </IonSelect>
       </IonItem>
 
       <IonItem>
-        <IonSelect label="Fixed label" labelPlacement="fixed" placeholder="Favorite fruit">
-          <IonSelectOption value="apple">Apple</IonSelectOption>
-          <IonSelectOption value="banana">Banana</IonSelectOption>
-          <IonSelectOption value="orange">Orange</IonSelectOption>
+        <IonSelect label="Estate" labelPlacement="fixed"  value={estate} onIonChange={setEstate}>
+          <IonSelectOption value="woodlands">Woodlands</IonSelectOption>
+          <IonSelectOption value="sembawang">Sembawang</IonSelectOption>
+          <IonSelectOption value="Yishun">Yishun</IonSelectOption>
         </IonSelect>
       </IonItem>
 
