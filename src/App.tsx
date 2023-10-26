@@ -8,29 +8,6 @@ import axios from 'axios';
 
 setupIonicReact();
 
-const markerIds = [
-  {
-    coordinate: {
-      lat: 2,
-      lng: 103.8198
-    }
-  }, 
-  {
-    coordinate: {
-      lat: 1.35,
-      lng: 103.8198,
-    },
-    title: 'test'
-  },
-  {
-    coordinate: {
-      lat: 1.7,
-      lng: 105,
-    },
-    title: 'test'
-  }
-]
-
 const App: React.FC = () => {
   const mapRef = useRef<HTMLElement>();
   let newMap: GoogleMap;
@@ -76,6 +53,36 @@ const App: React.FC = () => {
           }
         })
 
+        const markerIds = []
+          // {
+          //   coordinate: {
+          //     lat: 2,
+          //     lng: 103.8198
+          //   }
+          // }, 
+          // {
+          //   coordinate: {
+          //     lat: 1.35,
+          //     lng: 103.8198,
+          //   },
+          //   title: 'test'
+          // },
+          // {
+          //   coordinate: {
+          //     lat: 1.7,
+          //     lng: 105,
+          //   },
+          //   title: 'test'
+          // }
+        
+        for(let i=0; i<response.data.length; i++){
+          markerIds.push({
+            coordinate:{
+              lat: parseFloat(response.data[i].location.coordinates.lat),
+              lng: parseFloat(response.data[i].location.coordinates.lng)
+            }
+          })
+        }
     let path = [];
 
     for(let i=0; i<markerIds.length; i++){
