@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import Example from './Example';
 import { setupIonicReact } from '@ionic/react';
 import '@ionic/react/css/core.css';
+import { useSelector } from 'react-redux';
 
 setupIonicReact();
 
@@ -32,8 +33,23 @@ const markerIds = [
 const App: React.FC = () => {
   const mapRef = useRef<HTMLElement>();
   let newMap: GoogleMap;
+  const inspectionType: string = useSelector((state:any) => state.example.inspectionType);
+  const estate: string = useSelector((state:any) => state.example.estate);
+  const block: string = useSelector((state:any) => state.example.block);
+  const inspector: string = useSelector((state:any) => state.example.inspector);
+  const startDate: string = useSelector((state:any) => state.example.startDate);
+  const endDate: string = useSelector((state:any) => state.example.endDate);
 
   async function createMap() {
+    console.log('info needed is ',
+    inspectionType,
+    estate,
+    inspector,
+    block, 
+    startDate,
+    endDate
+    )
+    
     if (!mapRef.current) return;
 
     newMap = await GoogleMap.create({
