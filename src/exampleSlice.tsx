@@ -8,7 +8,7 @@ export const exampleSlice = createSlice({
         block: '1',
         inspector: 'bob',
         startDate: '2023-10-01T02:00:00Z',
-        endDate: '2023-10-10T02:00:00Z'
+        endDate: '2023-10-20T02:00:00Z'
     },
     reducers: {
         setInspectionTypeReducer: (state, action) => {

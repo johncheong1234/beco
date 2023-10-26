@@ -54,51 +54,46 @@ const App: React.FC = () => {
         })
 
         const markerIds = []
-          // {
-          //   coordinate: {
-          //     lat: 2,
-          //     lng: 103.8198
-          //   }
-          // }, 
-          // {
-          //   coordinate: {
-          //     lat: 1.35,
-          //     lng: 103.8198,
-          //   },
-          //   title: 'test'
-          // },
-          // {
-          //   coordinate: {
-          //     lat: 1.7,
-          //     lng: 105,
-          //   },
-          //   title: 'test'
-          // }
+        const records = response.data;
         
-        for(let i=0; i<response.data.length; i++){
-          markerIds.push({
-            coordinate:{
-              lat: parseFloat(response.data[i].location.coordinates.lat),
-              lng: parseFloat(response.data[i].location.coordinates.lng)
+        for(let i=0; i<records.length; i++){
+          
+          if(records[i].inspectionType !== 'FIR'){
+            console.log(records[i])
+            markerIds.push({
+              coordinate:{
+                lat: parseFloat(records[i].location.coordinates.lat),
+                lng: parseFloat(records[i].location.coordinates.lng)
+              }
+            })
+          }else{
+            const path = [];
+            for(let j=0; j<records[i].location.coordinates.length; j++){
+              markerIds.push({
+                coordinate:{
+                  lat: parseFloat(records[i].location.coordinates[j].lat),
+                  lng: parseFloat(records[i].location.coordinates[j].lng)
+                }
+              })
+              path.push({
+                lat: parseFloat(records[i].location.coordinates[j].lat),
+                lng: parseFloat(records[i].location.coordinates[j].lng)
+              })
             }
-          })
+
+            await newMap.addPolylines([
+              {
+                strokeColor: 'Black',
+                path: path
+              }
+            ])
+          }
+          
         }
-    let path = [];
 
     for(let i=0; i<markerIds.length; i++){
       await newMap.addMarker(markerIds[i]);
-      path.push({
-        lat: markerIds[i].coordinate.lat,
-        lng: markerIds[i].coordinate.lng
-      })
     }
-  
-    await newMap.addPolylines([
-      {
-        strokeColor: 'Black',
-        path: path
-      }
-    ])
 
     await newMap.setOnMarkerClickListener((event) => {
       console.log(event)
