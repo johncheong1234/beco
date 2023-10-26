@@ -52,12 +52,12 @@ const App: React.FC = () => {
     )
 
     axios.post('http://localhost:3001/records', {
-      "inspector": "bob",
-      "block": "1",
-      "estate": "woodlands",
-      "inspectionType": "FIR",
-      "startDate":"2023-10-01T18:00:00.000Z",
-      "endDate": "2023-10-10T18:00:00.000Z"
+      "inspector": inspector,
+      "block": block,
+      "estate": estate,
+      "inspectionType": inspectionType,
+      "startDate":startDate,
+      "endDate": endDate
   })
     .then(async function (response: any) {
       console.log(response);
