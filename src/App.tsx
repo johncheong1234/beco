@@ -64,16 +64,20 @@ const App: React.FC = () => {
               coordinate:{
                 lat: parseFloat(records[i].location.coordinates.lat),
                 lng: parseFloat(records[i].location.coordinates.lng)
-              }
+              },
+              title: `${records[i].inspector}_${records[i].estate}_${records[i].inspectionType}`
             })
           }else{
             const path = [];
             for(let j=0; j<records[i].location.coordinates.length; j++){
+              console.log('records i is ', records[i])
               markerIds.push({
                 coordinate:{
                   lat: parseFloat(records[i].location.coordinates[j].lat),
-                  lng: parseFloat(records[i].location.coordinates[j].lng)
-                }
+                  lng: parseFloat(records[i].location.coordinates[j].lng),
+                },
+                title: `${records[i].inspector}_${records[i].estate}_${records[i].inspectionType}`
+
               })
               path.push({
                 lat: parseFloat(records[i].location.coordinates[j].lat),
